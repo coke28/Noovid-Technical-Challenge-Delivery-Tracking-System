@@ -1,83 +1,54 @@
-# Metronic - Bootstrap 5 HTML, React, Angular, VueJS & Laravel Admin Dashboard Theme
+## Project Setup
 
-- For a quick start please check [Online documentation page](//preview.keenthemes.com/metronic8/laravel/documentation/getting-started/build)
+1. **Clone Repository**: Clone this repository to your local machine.
 
+2. **Database Setup**:
+   - Create a MySQL database named `brg_central`.
+   - Import `brg_central.sql` file into the database.
 
-- The offline documentation is available within the theme [Offline documentation page](//localhost:8000/documentation/getting-started/build)
+3. **Environment Configuration**:
+   - Copy contents from `.env.example` and create a new `.env` file.
+   - Fill in the database details (`DB_DATABASE`) in the `.env` file.
 
+4. **Generate Application Key**: Run the following command in the project directory to generate a new application key:
+   ```bash
+   php artisan key:generate
+   ```
 
-- For any theme related questions please contact our [Theme Support](//keenthemes.com/support/)
+5. **Install Dependencies**:
+   - Run `composer install` to install PHP dependencies (Requires PHP 8.2).
+   - Run `npm install --global npm@latest` to install NPM dependencies.
 
+6. **Build Vue Components**: Run `npm run watch/dev` to build Vue components.
 
-- Using Metronic in a new project or for a new client? Purchase a new license https://1.envato.market/EA4JP or watch https://youtu.be/HJ3RNhoI24A to find out more information about licenses.
+7. **Start Websockets Server**: Run `php artisan websockets:serve` to start the websockets server.
 
+8. **Start Local Server**: Run `php artisan serve` to start the local server.
 
-- Stay tuned for updates via [Twitter](//www.twitter.com/keenthemes) and [Instagram](//www.instagram.com/keenthemes) and 
-  check our marketplace for more amazing products: [Keenthemes Marketplace](//keenthemes.com/)
+## Setting Up Cron Job
 
+1. **SSH into Your Homestead Environment**: Use PuTTY or Windows Subsystem for Linux (WSL) to SSH into your Homestead environment.
 
-Happy coding with Metronic!
+2. **Open the Crontab File**: Run the following command to open the crontab file for editing:
+   ```bash
+   crontab -e
+   ```
 
+3. **Add Cron Job**: Add the following line to the crontab file to run the Laravel scheduler every minute:
+   ```bash
+   * * * * * cd /path/to/your/laravel/project && php artisan schedule:run >> /dev/null 2>&1
+   ```
+   Replace `/path/to/your/laravel/project` with the actual path to your Laravel project directory.
 
+4. **Save and Exit**: Save and exit the crontab file.
 
-### Laravel Quick Start
+5. **Verify the Cron Job**: Run the following command to verify that the cron job was added successfully:
+   ```bash
+   crontab -l
+   ```
 
-1. Download the latest theme source from the Marketplace.
+   You should see your newly added cron job listed.
 
+Use account admin@demo.com and password demo to continue.
 
-2. Download and install `Node.js` from Nodejs. The suggested version to install is `14.16.x LTS`.
-
-
-3. Start a command prompt window or terminal and change directory to [unpacked path]:
-
-
-4. Install the latest `NPM`:
-   
-        npm install --global npm@latest
-
-
-5. To install `Composer` globally, download the installer from https://getcomposer.org/download/ Verify that Composer in successfully installed, and version of installed Composer will appear:
-   
-        composer --version
-
-
-6. Install `Composer` dependencies.
-   
-        composer install
-
-
-7. Install `NPM` dependencies.
-   
-        npm install
-
-
-8. The below command will compile all the assets(sass, js, media) to public folder:
-   
-        npm run dev
-
-
-9. Copy `.env.example` file and create duplicate. Use `cp` command for Linux or Max user.
-
-        cp .env.example .env
-
-    If you are using `Windows`, use `copy` instead of `cp`.
-   
-        copy .env.example .env
-   
-
-10. Create a table in MySQL database and fill the database details `DB_DATABASE` in `.env` file.
-
-
-12. The below command will create tables into database using Laravel migration and seeder.
-
-        php artisan migrate:fresh --seed
-
-
-13. Generate your application encryption key:
-
-        php artisan key:generate
-
-
-14. Start the localhost server:
-    
-        php artisan serve
+---
